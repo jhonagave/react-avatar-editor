@@ -1,5 +1,4 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 
 var isTouchDevice =
     !!(typeof window !== 'undefined' &&
@@ -141,7 +140,7 @@ var AvatarEditor = React.createClass({
 
         return dom.toDataURL(type, quality);
     },
-    
+
     getCroppingRect() {
         var dim = this.getDimensions();
         var frameRect = {x: dim.border, y: dim.border, width: dim.width, height: dim.height};
@@ -168,7 +167,7 @@ var AvatarEditor = React.createClass({
     },
 
     componentDidMount() {
-        var context = ReactDOM.findDOMNode(this.refs.canvas).getContext('2d');
+        var context = React.findDOMNode(this.refs.canvas).getContext('2d');
         if (this.props.image) {
             this.loadImage(this.props.image);
         }
@@ -199,7 +198,7 @@ var AvatarEditor = React.createClass({
     },
 
     componentDidUpdate() {
-        var context = ReactDOM.findDOMNode(this.refs.canvas).getContext('2d');
+        var context = React.findDOMNode(this.refs.canvas).getContext('2d');
         context.clearRect(0, 0, this.getDimensions().canvas.width, this.getDimensions().canvas.height);
         this.paint(context);
         this.paintImage(context, this.state.image, this.props.border);
@@ -291,11 +290,11 @@ var AvatarEditor = React.createClass({
         var borderRadius = this.props.borderRadius;
         var height = dimensions.canvas.height;
         var width = dimensions.canvas.width;
-        
+
         // clamp border radius between zero (perfect rectangle) and half the size without borders (perfect circle or "pill")
         borderRadius = Math.max(borderRadius, 0);
         borderRadius = Math.min(borderRadius, width/2 - borderSize, height/2 - borderSize);
-        
+
         context.beginPath();
         drawRoundedRect(context, borderSize, borderSize, width - borderSize*2, height - borderSize*2, borderRadius); // inner rect, possibly rounded
         context.rect(width, 0, -width, height); // outer rect, drawn "counterclockwise"
@@ -381,7 +380,7 @@ var AvatarEditor = React.createClass({
         var e = e || window.event;
         e.stopPropagation();
         e.preventDefault();
-        
+
         if (e.dataTransfer && e.dataTransfer.files.length) {
             this.props.onDropFile(e);
             let reader = new FileReader();
@@ -395,7 +394,7 @@ var AvatarEditor = React.createClass({
         var defaultStyle = {
             cursor: this.state.drag? 'grabbing' : 'grab'
         };
-    
+
         var attributes = {
             width: this.getDimensions().canvas.width,
             height: this.getDimensions().canvas.height,
