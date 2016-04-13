@@ -37,8 +37,7 @@
     "devDependencies": {
         "babel": "^5.5.8",
         "http-server": "^0.7.4",
-        "react": "^0.14.0",
-        "react-dom": "^0.14.0",
+        "react": "^0.13.3",
         "reactify": "0.17.1",
         "uglifyjs": "^2.4.10",
         "watchify": "^3.2.2"
