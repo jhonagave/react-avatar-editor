@@ -16,7 +16,6 @@
     var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
     var React = require('react');
-    var ReactDOM = require('react-dom');
 
     var isTouchDevice = !!(typeof window !== 'undefined' && typeof navigator !== 'undefined' && ('ontouchstart' in window || navigator.msMaxTouchPoints > 0));
     var draggableEvents = {
@@ -183,7 +182,7 @@
         },
 
         componentDidMount: function componentDidMount() {
-            var context = ReactDOM.findDOMNode(this.refs.canvas).getContext('2d');
+            var context = React.findDOMNode(this.refs.canvas).getContext('2d');
             if (this.props.image) {
                 this.loadImage(this.props.image);
             }
@@ -214,7 +213,7 @@
         },
 
         componentDidUpdate: function componentDidUpdate() {
-            var context = ReactDOM.findDOMNode(this.refs.canvas).getContext('2d');
+            var context = React.findDOMNode(this.refs.canvas).getContext('2d');
             context.clearRect(0, 0, this.getDimensions().canvas.width, this.getDimensions().canvas.height);
             this.paint(context);
             this.paintImage(context, this.state.image, this.props.border);
